@@ -1,0 +1,22 @@
+{
+  "name": "botfinders",
+  "version": "1.0.0",
+  "description": "Bot finding algorithims",
+  "main": "CreateDBAndCollection.js",
+  "scripts": {
+    "test": "node createDBAndCollection.js"
+  },
+  "author": "Andrew Baronick",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "binance-api-node": "^0.11.24",
+    "crypto": "^1.0.1",
+    "mongodb": "^4.2.0",
+    "qa": "0.0.1",
+    "sleep-promise": "^9.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.9"
+  }
+}

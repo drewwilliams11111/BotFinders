@@ -1,0 +1,118 @@
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').
+# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# MTFil to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+
+# Update Prices
+* * * * * (sleep 1; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdatePrices.js >> ../Error.log 2>&1)
+* * * * * (sleep 6; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdatePrices.js >> ../Error.log 2>&1)
+* * * * * (sleep 11; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdatePrices.js >> ../Error.log 2>&1)
+* * * * * (sleep 16; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdatePrices.js >> ../Error.log 2>&1)
+* * * * * (sleep 21; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdatePrices.js >> ../Error.log 2>&1)
+* * * * * (sleep 26; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdatePrices.js >> ../Error.log 2>&1)
+* * * * * (sleep 31; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdatePrices.js >> ../Error.log 2>&1)
+* * * * * (sleep 36; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdatePrices.js >> ../Error.log 2>&1)
+* * * * * (sleep 41; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdatePrices.js >> ../Error.log 2>&1)
+* * * * * (sleep 46; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdatePrices.js >> ../Error.log 2>&1)
+* * * * * (sleep 51; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdatePrices.js >> ../Error.log 2>&1)
+* * * * * (sleep 56; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdatePrices.js >> ../Error.log 2>&1)
+
+# Update Movements
+0 3 * * * (sleep 3; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdateMovements.js >> ../Error.log 2>&1)
+0 7 * * * (sleep 3; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdateMovements.js >> ../Error.log 2>&1)
+0 11 * * * (sleep 3; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdateMovements.js >> ../Error.log 2>&1)
+0 15 * * * (sleep 3; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdateMovements.js >> ../Error.log 2>&1)
+0 19 * * * (sleep 3; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdateMovements.js >> ../Error.log 2>&1)
+0 23 * * * (sleep 3; cd /home/ubuntu/BotFinders/Helpers && /home/ubuntu/.nvm/versions/node/v17.1.0/bin/node UpdateMovements.js >> ../Error.log 2>&1)
+
+# Run ATR Finders
+* * * * * (sleep 2; cd /home/ubuntu/BotFinders/ATRFinders && ./RunATRFinders.sh)
+* * * * * (sleep 7; cd /home/ubuntu/BotFinders/ATRFinders && ./RunATRFinders.sh)
+* * * * * (sleep 12; cd /home/ubuntu/BotFinders/ATRFinders && ./RunATRFinders.sh)
+* * * * * (sleep 17; cd /home/ubuntu/BotFinders/ATRFinders && ./RunATRFinders.sh)
+* * * * * (sleep 22; cd /home/ubuntu/BotFinders/ATRFinders && ./RunATRFinders.sh)
+* * * * * (sleep 27; cd /home/ubuntu/BotFinders/ATRFinders && ./RunATRFinders.sh)
+* * * * * (sleep 32; cd /home/ubuntu/BotFinders/ATRFinders && ./RunATRFinders.sh)
+* * * * * (sleep 37; cd /home/ubuntu/BotFinders/ATRFinders && ./RunATRFinders.sh)
+* * * * * (sleep 42; cd /home/ubuntu/BotFinders/ATRFinders && ./RunATRFinders.sh)
+* * * * * (sleep 47; cd /home/ubuntu/BotFinders/ATRFinders && ./RunATRFinders.sh)
+* * * * * (sleep 52; cd /home/ubuntu/BotFinders/ATRFinders && ./RunATRFinders.sh)
+* * * * * (sleep 57; cd /home/ubuntu/BotFinders/ATRFinders && ./RunATRFinders.sh)
+
+# Run BTC Finders
+* * * * * (sleep 3; cd /home/ubuntu/BotFinders/BTCFinders && ./RunBTCFinders.sh)
+* * * * * (sleep 8; cd /home/ubuntu/BotFinders/BTCFinders && ./RunBTCFinders.sh)
+* * * * * (sleep 13; cd /home/ubuntu/BotFinders/BTCFinders && ./RunBTCFinders.sh)
+* * * * * (sleep 18; cd /home/ubuntu/BotFinders/BTCFinders && ./RunBTCFinders.sh)
+* * * * * (sleep 23; cd /home/ubuntu/BotFinders/BTCFinders && ./RunBTCFinders.sh)
+* * * * * (sleep 28; cd /home/ubuntu/BotFinders/BTCFinders && ./RunBTCFinders.sh)
+* * * * * (sleep 33; cd /home/ubuntu/BotFinders/BTCFinders && ./RunBTCFinders.sh)
+* * * * * (sleep 38; cd /home/ubuntu/BotFinders/BTCFinders && ./RunBTCFinders.sh)
+* * * * * (sleep 43; cd /home/ubuntu/BotFinders/BTCFinders && ./RunBTCFinders.sh)
+* * * * * (sleep 48; cd /home/ubuntu/BotFinders/BTCFinders && ./RunBTCFinders.sh)
+* * * * * (sleep 53; cd /home/ubuntu/BotFinders/BTCFinders && ./RunBTCFinders.sh)
+* * * * * (sleep 58; cd /home/ubuntu/BotFinders/BTCFinders && ./RunBTCFinders.sh)
+
+# Run BTC Finders Reverse
+* * * * * (sleep 4; cd /home/ubuntu/BotFinders/BTCFindersReverse && ./RunBTCFindersReverse.sh)
+* * * * * (sleep 9; cd /home/ubuntu/BotFinders/BTCFindersReverse && ./RunBTCFindersReverse.sh)
+* * * * * (sleep 14; cd /home/ubuntu/BotFinders/BTCFindersReverse && ./RunBTCFindersReverse.sh)
+* * * * * (sleep 19; cd /home/ubuntu/BotFinders/BTCFindersReverse && ./RunBTCFindersReverse.sh)
+* * * * * (sleep 24; cd /home/ubuntu/BotFinders/BTCFindersReverse && ./RunBTCFindersReverse.sh)
+* * * * * (sleep 29; cd /home/ubuntu/BotFinders/BTCFindersReverse && ./RunBTCFindersReverse.sh)
+* * * * * (sleep 34; cd /home/ubuntu/BotFinders/BTCFindersReverse && ./RunBTCFindersReverse.sh)
+* * * * * (sleep 39; cd /home/ubuntu/BotFinders/BTCFindersReverse && ./RunBTCFindersReverse.sh)
+* * * * * (sleep 44; cd /home/ubuntu/BotFinders/BTCFindersReverse && ./RunBTCFindersReverse.sh)
+* * * * * (sleep 49; cd /home/ubuntu/BotFinders/BTCFindersReverse && ./RunBTCFindersReverse.sh)
+* * * * * (sleep 54; cd /home/ubuntu/BotFinders/BTCFindersReverse && ./RunBTCFindersReverse.sh)
+* * * * * (sleep 59; cd /home/ubuntu/BotFinders/BTCFindersReverse && ./RunBTCFindersReverse.sh)
+
+# Run BTC Finders Changing
+* * * * * (cd /home/ubuntu/BotFinders/BTCFindersChanging && ./RunBTCFindersChanging.sh)
+* * * * * (sleep 5; cd /home/ubuntu/BotFinders/BTCFindersChanging && ./RunBTCFindersChanging.sh)
+* * * * * (sleep 10; cd /home/ubuntu/BotFinders/BTCFindersChanging && ./RunBTCFindersChanging.sh)
+* * * * * (sleep 15; cd /home/ubuntu/BotFinders/BTCFindersChanging && ./RunBTCFindersChanging.sh)
+* * * * * (sleep 20; cd /home/ubuntu/BotFinders/BTCFindersChanging && ./RunBTCFindersChanging.sh)
+* * * * * (sleep 25; cd /home/ubuntu/BotFinders/BTCFindersChanging && ./RunBTCFindersChanging.sh)
+* * * * * (sleep 30; cd /home/ubuntu/BotFinders/BTCFindersChanging && ./RunBTCFindersChanging.sh)
+* * * * * (sleep 35; cd /home/ubuntu/BotFinders/BTCFindersChanging && ./RunBTCFindersChanging.sh)
+* * * * * (sleep 40; cd /home/ubuntu/BotFinders/BTCFindersChanging && ./RunBTCFindersChanging.sh)
+* * * * * (sleep 45; cd /home/ubuntu/BotFinders/BTCFindersChanging && ./RunBTCFindersChanging.sh)
+* * * * * (sleep 50; cd /home/ubuntu/BotFinders/BTCFindersChanging && ./RunBTCFindersChanging.sh)
+* * * * * (sleep 55; cd /home/ubuntu/BotFinders/BTCFindersChanging && ./RunBTCFindersChanging.sh)
+
+# Run BTC Finders Changing 2 Loss
+* * * * * (sleep 2; cd /home/ubuntu/BotFinders/BTCFindersChanging2Loss && ./RunBTCFindersChanging2Loss.sh)
+* * * * * (sleep 7; cd /home/ubuntu/BotFinders/BTCFindersChanging2Loss && ./RunBTCFindersChanging2Loss.sh)
+* * * * * (sleep 12; cd /home/ubuntu/BotFinders/BTCFindersChanging2Loss && ./RunBTCFindersChanging2Loss.sh)
+* * * * * (sleep 17; cd /home/ubuntu/BotFinders/BTCFindersChanging2Loss && ./RunBTCFindersChanging2Loss.sh)
+* * * * * (sleep 22; cd /home/ubuntu/BotFinders/BTCFindersChanging2Loss && ./RunBTCFindersChanging2Loss.sh)
+* * * * * (sleep 27; cd /home/ubuntu/BotFinders/BTCFindersChanging2Loss && ./RunBTCFindersChanging2Loss.sh)
+* * * * * (sleep 32; cd /home/ubuntu/BotFinders/BTCFindersChanging2Loss && ./RunBTCFindersChanging2Loss.sh)
+* * * * * (sleep 37; cd /home/ubuntu/BotFinders/BTCFindersChanging2Loss && ./RunBTCFindersChanging2Loss.sh)
+* * * * * (sleep 42; cd /home/ubuntu/BotFinders/BTCFindersChanging2Loss && ./RunBTCFindersChanging2Loss.sh)
+* * * * * (sleep 47; cd /home/ubuntu/BotFinders/BTCFindersChanging2Loss && ./RunBTCFindersChanging2Loss.sh)
+* * * * * (sleep 52; cd /home/ubuntu/BotFinders/BTCFindersChanging2Loss && ./RunBTCFindersChanging2Loss.sh)
+* * * * * (sleep 57; cd /home/ubuntu/BotFinders/BTCFindersChanging2Loss && ./RunBTCFindersChanging2Loss.sh)
+
+# Clear mongo log file every minute
+* * * * * sudo cp /dev/null /var/log/mongodb/mongod.log
