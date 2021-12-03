@@ -69,7 +69,7 @@ const createDBAndCollection = async () => {
         if (currentSymbol.includes("USDT") && currentSymbol !== 'USDCUSDT') {
             const medianRange = await findMedianRange(currentSymbol)
             const currentPrice = Number(allPrices[currentSymbol])
-            ATRFinderObjectAll.push({
+            ATRFinderSpecialObjectAll.push({
                 symbol: currentSymbol,
                 startingLine: currentPrice,
                 currentLine: currentPrice,
@@ -88,7 +88,7 @@ const createDBAndCollection = async () => {
                 wonTimes: 0,
                 lossTimes: 0
             })
-            ATRFinderSmallObjectAll.push({
+            ATRFinderSpecialSmallObjectAll.push({
                 symbol: currentSymbol,
                 startingLine: currentPrice,
                 currentLine: currentPrice,

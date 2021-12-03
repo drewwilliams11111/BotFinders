@@ -4,7 +4,7 @@ const helperMongo = require('../Helpers/Mongo')
 // Function to run the bot
 const runATRFinderBot = async () => {
     // Get needed collection info and declare buy price
-    const collectionInfoCoins = await helperMongo.getCollectionInfo('ATRFinder')
+    const collectionInfoCoins = await helperMongo.getCollectionInfo('ATRFinderSpecial')
     let allCoins = collectionInfoCoins[0].allCoins
     const collectionInfoPrices = await helperMongo.getCollectionInfo('AllPrices')
     const allPrices = collectionInfoPrices[0].allPrices
@@ -240,7 +240,7 @@ const runATRFinderBot = async () => {
         }
     }
     // Update the DB with new coin results
-    await helperMongo.updateCollection('ATRFinder', collectionInfoCoins[0]._id, 'allCoins', allCoins)
+    await helperMongo.updateCollection('ATRFinderSpecial', collectionInfoCoins[0]._id, 'allCoins', allCoins)
 
     // NEEDED MONGO VARIABLES
     // allCoins[i].symbol
