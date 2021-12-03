@@ -7,10 +7,10 @@ const helperCheckerBTC = require('./Helpers/CheckerBTC')
 const getResults = async () => {
     // All the BTC collections
     const collectionsBTC = [
-        'BTCFinder', 'BTCFinder2', 'BTCFinderSmall', 'BTCFinderSmall2',
-        'BTCFinderReverse', 'BTCFinderReverse2', 'BTCFinderReverseSmall', 'BTCFinderReverseSmall2',
-        'BTCFinderChanging', 'BTCFinderChanging2', 'BTCFinderChangingSmall', 'BTCFinderChangingSmall2',
-        'BTCFinderChanging2Loss', 'BTCFinderChanging2Loss2', 'BTCFinderChanging2LossSmall', 'BTCFinderChanging2LossSmall2'
+        'BTCFinder', 'BTCFinder2', 'BTCFinderReverse', 'BTCFinderReverse2', 
+        'BTCFinderChanging', 'BTCFinderChanging2', 'BTCFinderChanging2Loss', 'BTCFinderChanging2Loss2',
+        'BTCFinderSmall', 'BTCFinderSmall2', 'BTCFinderReverseSmall', 'BTCFinderReverseSmall2', 
+        'BTCFinderChangingSmall', 'BTCFinderChangingSmall2', 'BTCFinderChanging2LossSmall', 'BTCFinderChanging2LossSmall2',
     ]
 
     // Loop all BTC collections and print there results
@@ -36,7 +36,7 @@ const getResults = async () => {
     // All the Special ATR collections
     const collectionsATRSpecial = ['ATRFinderSpecial', 'ATRFinderSpecialSmall']
 
-    // Loop all ATR collections and print there results
+    // Loop all the special ATR collections and print there results
     for (let i = 0; i < collectionsATRSpecial.length; i++) {
         const ATRFinderSpecialResults = await helperCheckerATRSpecial.checkATRFinders(collectionsATRSpecial[i])
         console.log(`${collectionsATRSpecial[i]} - ${ATRFinderSpecialResults.result}`)
