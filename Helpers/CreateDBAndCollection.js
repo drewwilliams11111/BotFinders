@@ -10,7 +10,9 @@ const createDBAndCollection = async () => {
     // Name of all the wanted collections
     const collectionNames = [
         'API', 'AllPrices', 'Movements',
-        'ATRFinder', 'ATRFinderSmall',
+        'ATRFinderSpecial', 'ATRFinderSpecialSmall',
+        'ATRFinder', 'ATRFinder2', 'ATRFinderReverse', 'ATRFinderReverse2', 'ATRFinderChanging', 'ATRFinderChanging2', 'ATRFinderChanging2Loss', 'ATRFinderChanging2Loss2',
+        'ATRFinderSmall', 'ATRFinderSmall2', 'ATRFinderReverseSmall', 'ATRFinderReverseSmall2', 'ATRFinderChangingSmall', 'ATRFinderChangingSmall2', 'ATRFinderChanging2LossSmall', 'ATRFinderChanging2LossSmall2',
         'BTCFinder', 'BTCFinder2', 'BTCFinderReverse', 'BTCFinderReverse2', 'BTCFinderChanging', 'BTCFinderChanging2', 'BTCFinderChanging2Loss', 'BTCFinderChanging2Loss2',
         'BTCFinderSmall', 'BTCFinderSmall2', 'BTCFinderReverseSmall', 'BTCFinderReverseSmall2', 'BTCFinderChangingSmall', 'BTCFinderChangingSmall2', 'BTCFinderChanging2LossSmall', 'BTCFinderChanging2LossSmall2',
     ]
@@ -29,6 +31,8 @@ const createDBAndCollection = async () => {
     const allCoinInfo = await helperGeneral.getCoinInfoMargin()
     let ATRFinderObjectAll = []
     let ATRFinderSmallObjectAll = []
+    let ATRFinderSpecialObjectAll = []
+    let ATRFinderSpecialSmallObjectAll = []
     let BTCFinderObjectAll = []
     let BTCFinderSmallObjectAll = []
     let movements = []
@@ -103,6 +107,40 @@ const createDBAndCollection = async () => {
                 wonTimes: 0,
                 lossTimes: 0
             })
+            ATRFinderObjectAll.push({
+                symbol: currentSymbol,
+                startingLine: currentPrice,
+                currentLine: currentPrice,
+                currentStage: 0,
+                movement: medianRange.movement,
+                normalBuying: true,
+                lossTimesInRow: 0,
+                highestPoints: 0,
+                boughtOrNot: false,
+                boughtType: '',
+                boughtPrice: 0,
+                wallet: 100,
+                walletOld: 100,
+                wonTimes: 0,
+                lossTimes: 0
+            })
+            ATRFinderSmallObjectAll.push({
+                symbol: currentSymbol,
+                startingLine: currentPrice,
+                currentLine: currentPrice,
+                currentStage: 0,
+                movement: medianRange.movementSmall,
+                normalBuying: true,
+                lossTimesInRow: 0,
+                highestPoints: 0,
+                boughtOrNot: false,
+                boughtType: '',
+                boughtPrice: 0,
+                wallet: 100,
+                walletOld: 100,
+                wonTimes: 0,
+                lossTimes: 0
+            })
             movements.push(medianRange)
             for (let j = 0; j < allCoinInfo.length; j++) {
                 if (currentSymbol.replace('USDT', 'BTC') === allCoinInfo[j].symbol) {
@@ -156,10 +194,12 @@ const createDBAndCollection = async () => {
     }
 
     // Create the collections with objects created in last step
-    await helperMongo.addNewCollectionObject('ATRFinder', { allCoins: ATRFinderObjectAll })
-    await helperMongo.addNewCollectionObject('ATRFinderSmall', { allCoins: ATRFinderSmallObjectAll })
+    await helperMongo.addNewCollectionObject('ATRFinderSpecial', { allCoins: ATRFinderSpecialObjectAll })
+    await helperMongo.addNewCollectionObject('ATRFinderSpecialSmall', { allCoins: ATRFinderSpecialSmallObjectAll })
     await helperMongo.addNewCollectionObject('Movements', { movements: movements })
-    for (let i = 5; i < 13; i++) { await helperMongo.addNewCollectionObject(collectionNames[i], { allCoins: BTCFinderObjectAll }) }
-    for (let i = 13; i < collectionNames.length; i++) { await helperMongo.addNewCollectionObject(collectionNames[i], { allCoins: BTCFinderSmallObjectAll }) }
+    for (let i = 5; i < 13; i++) { await helperMongo.addNewCollectionObject(collectionNames[i], { allCoins: ATRFinderObjectAll }) }
+    for (let i = 13; i < 21; i++) { await helperMongo.addNewCollectionObject(collectionNames[i], { allCoins: ATRFinderSmallObjectAll }) }
+    for (let i = 21; i < 29; i++) { await helperMongo.addNewCollectionObject(collectionNames[i], { allCoins: BTCFinderObjectAll }) }
+    for (let i = 29; i < collectionNames.length; i++) { await helperMongo.addNewCollectionObject(collectionNames[i], { allCoins: BTCFinderSmallObjectAll }) }
 }
 createDBAndCollection()

@@ -4,7 +4,7 @@ const helperMongo = require('../Helpers/Mongo')
 // Function to run the bot
 const runATRFinderBot = async () => {
     // Get needed collection info
-    const collectionInfoCoins = await helperMongo.getCollectionInfo('ATRFinder')
+    const collectionInfoCoins = await helperMongo.getCollectionInfo('ATRFinderReverse2')
     let allCoins = collectionInfoCoins[0].allCoins
     const collectionInfoPrices = await helperMongo.getCollectionInfo('AllPrices')
     const allPrices = collectionInfoPrices[0].allPrices
@@ -37,15 +37,14 @@ const runATRFinderBot = async () => {
         }
 
         // Perform fake buy and update wallet
-        const buy = async (highestPoints) => {
+        const buy = async () => {
             if (allCoins[i].currentStage > 0) {
-                allCoins[i].boughtType = 'long'
-            } else {
                 allCoins[i].boughtType = 'short'
+            } else {
+                allCoins[i].boughtType = 'long'
             }
             allCoins[i].wallet = 0
             allCoins[i].boughtOrNot = true
-            allCoins[i].highestPoints = highestPoints
             allCoins[i].boughtPrice = currentPrice
         }
 
@@ -62,7 +61,6 @@ const runATRFinderBot = async () => {
             } else {
                 allCoins[i].lossTimes++
             }
-            allCoins[i].highestPoints = 0
             allCoins[i].boughtOrNot = false
             allCoins[i].boughtType = ''
             allCoins[i].startingLine = currentPrice
@@ -80,20 +78,16 @@ const runATRFinderBot = async () => {
         const points = Math.abs(allCoins[i].currentStage)
 
         // Find out if should buy
-        if (!allCoins[i].boughtOrNot && points >= 1) {
-            await buy(points)
+        if (!allCoins[i].boughtOrNot && points === 2) {
+            await buy()
         }
 
         // Find out if should sell or update highest points
-        if (allCoins[i].boughtOrNot) {
-            if (points > allCoins[i].highestPoints) {
-                allCoins[i].highestPoints = points
-            } else if (points <= (allCoins[i].highestPoints - 1)) {
-                await sell()
-            }
+        if (allCoins[i].boughtOrNot && (points === 0 || points === 4)) {
+            await sell()
         }
     }
     // Update the DB with new coin results
-    await helperMongo.updateCollection('ATRFinder', collectionInfoCoins[0]._id, 'allCoins', allCoins)
+    await helperMongo.updateCollection('ATRFinderReverse2', collectionInfoCoins[0]._id, 'allCoins', allCoins)
 }
 runATRFinderBot()

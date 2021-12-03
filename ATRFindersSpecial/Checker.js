@@ -1,9 +1,9 @@
 // Define variables and requires
-const helperChecker = require('../Helpers/CheckerATR')
+const helperChecker = require('../Helpers/CheckerATRSpecial')
 
 // Log the ATR Finder results
 const getResults = async () => {
-    const ATRDBS = ['ATRFinder', 'ATRFinder2', 'ATRFinderSmall', 'ATRFinderSmall2'] 
+    const ATRDBS = ['ATRFinderSpecial', 'ATRFinderSpecialSmall'] 
     for (let i = 0; i < ATRDBS.length; i++) {
         const ATRFinderResults = await helperChecker.checkATRFinders(ATRDBS[i])
         console.log(ATRDBS[i])

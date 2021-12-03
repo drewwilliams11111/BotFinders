@@ -4,7 +4,7 @@ const helperMongo = require('../Helpers/Mongo')
 // Function to run the bot
 const runATRFinderBot = async () => {
     // Get needed collection info
-    const collectionInfoCoins = await helperMongo.getCollectionInfo('ATRFinder')
+    const collectionInfoCoins = await helperMongo.getCollectionInfo('ATRFinder2')
     let allCoins = collectionInfoCoins[0].allCoins
     const collectionInfoPrices = await helperMongo.getCollectionInfo('AllPrices')
     const allPrices = collectionInfoPrices[0].allPrices
@@ -80,7 +80,7 @@ const runATRFinderBot = async () => {
         const points = Math.abs(allCoins[i].currentStage)
 
         // Find out if should buy
-        if (!allCoins[i].boughtOrNot && points >= 1) {
+        if (!allCoins[i].boughtOrNot && points >= 2) {
             await buy(points)
         }
 
@@ -88,12 +88,12 @@ const runATRFinderBot = async () => {
         if (allCoins[i].boughtOrNot) {
             if (points > allCoins[i].highestPoints) {
                 allCoins[i].highestPoints = points
-            } else if (points <= (allCoins[i].highestPoints - 1)) {
+            } else if (points <= (allCoins[i].highestPoints - 2)) {
                 await sell()
             }
         }
     }
     // Update the DB with new coin results
-    await helperMongo.updateCollection('ATRFinder', collectionInfoCoins[0]._id, 'allCoins', allCoins)
+    await helperMongo.updateCollection('ATRFinder2', collectionInfoCoins[0]._id, 'allCoins', allCoins)
 }
 runATRFinderBot()

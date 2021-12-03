@@ -4,7 +4,7 @@ const helperMongo = require('../Helpers/Mongo')
 // Function to run the bot
 const runATRFinderBot = async () => {
     // Get needed collection info
-    const collectionInfoCoins = await helperMongo.getCollectionInfo('ATRFinder')
+    const collectionInfoCoins = await helperMongo.getCollectionInfo('ATRFinderChanging2Loss')
     let allCoins = collectionInfoCoins[0].allCoins
     const collectionInfoPrices = await helperMongo.getCollectionInfo('AllPrices')
     const allPrices = collectionInfoPrices[0].allPrices
@@ -20,7 +20,7 @@ const runATRFinderBot = async () => {
             const movement = collectionInfoMovement[0].movements
             for (let x = 0; x < movement.length; x++) {
                 if (movement[x].symbol === currentSymbol) {
-                    allCoins[i].movement = movement[x].movement
+                    allCoins[i].movement = movement[x].movementSmall
                 }
             }
         }
@@ -39,9 +39,17 @@ const runATRFinderBot = async () => {
         // Perform fake buy and update wallet
         const buy = async (highestPoints) => {
             if (allCoins[i].currentStage > 0) {
-                allCoins[i].boughtType = 'long'
+                if (allCoins[i].normalBuying) {
+                    allCoins[i].boughtType = 'long'
+                } else {
+                    allCoins[i].boughtType = 'short'
+                }
             } else {
-                allCoins[i].boughtType = 'short'
+                if (allCoins[i].normalBuying) {
+                    allCoins[i].boughtType = 'short'
+                } else {
+                    allCoins[i].boughtType = 'long'
+                }
             }
             allCoins[i].wallet = 0
             allCoins[i].boughtOrNot = true
@@ -59,8 +67,18 @@ const runATRFinderBot = async () => {
             }
             if (allCoins[i].wallet > allCoins[i].walletOld) {
                 allCoins[i].wonTimes++
+                allCoins[i].lossTimesInRow = 0
             } else {
                 allCoins[i].lossTimes++
+                allCoins[i].lossTimesInRow++
+                if (allCoins[i].lossTimesInRow === 2) {
+                    if (allCoins[i].normalBuying) {
+                        allCoins[i].normalBuying = false
+                    } else {
+                        allCoins[i].normalBuying = true
+                    }
+                    allCoins[i].lossTimesInRow = 0
+                }
             }
             allCoins[i].highestPoints = 0
             allCoins[i].boughtOrNot = false
@@ -80,20 +98,26 @@ const runATRFinderBot = async () => {
         const points = Math.abs(allCoins[i].currentStage)
 
         // Find out if should buy
-        if (!allCoins[i].boughtOrNot && points >= 1) {
+        if (!allCoins[i].boughtOrNot && points >= 1 && allCoins[i].normalBuying) {
+            await buy(points)
+        }
+        if (!allCoins[i].boughtOrNot && points === 1 && !allCoins[i].normalBuying) {
             await buy(points)
         }
 
         // Find out if should sell or update highest points
-        if (allCoins[i].boughtOrNot) {
+        if (allCoins[i].boughtOrNot && allCoins[i].normalBuying) {
             if (points > allCoins[i].highestPoints) {
                 allCoins[i].highestPoints = points
             } else if (points <= (allCoins[i].highestPoints - 1)) {
                 await sell()
             }
         }
+        if (allCoins[i].boughtOrNot && points !== 1 && !allCoins[i].normalBuying) {
+            await sell()
+        }
     }
     // Update the DB with new coin results
-    await helperMongo.updateCollection('ATRFinder', collectionInfoCoins[0]._id, 'allCoins', allCoins)
+    await helperMongo.updateCollection('ATRFinderChanging2Loss', collectionInfoCoins[0]._id, 'allCoins', allCoins)
 }
 runATRFinderBot()

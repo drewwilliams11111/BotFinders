@@ -120,7 +120,7 @@ const runBTCFinderBot = async () => {
         const points = Math.abs(allCoins[i].currentStageBTC - allCoins[i].currentStage)
 
         // Find out if should buy
-        if (!allCoins[i].boughtOrNot && points >= 1 && allCoins[i].currentStage !== 0 && allCoins[i].normalBuying) {
+        if (!allCoins[i].boughtOrNot && points >= 1 && allCoins[i].normalBuying) {
             await buy(points)
         }
         if (!allCoins[i].boughtOrNot && points === 1 && !allCoins[i].normalBuying) {
