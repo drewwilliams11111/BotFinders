@@ -1,6 +1,6 @@
 # Bot Finders
 
-Collection of 20 different algorithms to live test the crypto market.  There are 5 main algorithms and each algorithm has 4 varieties with small parameter changes.  The algorithms are heavily based on ATR type movements.
+Collection of 34 different algorithms to live test the crypto market.  There are 9 main algorithms and each algorithm has 4 varieties with small parameter changes (except one which only has 2 varieties).  The algorithms are heavily based on ATR type movements.
 
 ## Requirements
 
@@ -14,7 +14,9 @@ Collection of 20 different algorithms to live test the crypto market.  There are
  2. Run "npm i" in the root directory to install all necessary dependencies. 
  3. Go to Helpers folder and add your Binance API key and secret to the file called CreateDBAndCollection.js (key and sec variables located on top of file)
  4. Run "node CreateDBAndCollection.js" (this will use mongo to create necessary databases, collections and preliminary collection info)
- 5. Go to file named cron.txt, copy all cron jobs and add to your local crontab.
+ 5. Inside each folder (except helper folder) there are run files.  Update these files with correct paths.
+ 6. In root folder is a file cron.txt, update this file with correct paths.
+ 5. Copy all cron jobs from cron.txt file and add to your local crontab.
 
 ## Whats happening?
 
@@ -25,7 +27,7 @@ Collection of 20 different algorithms to live test the crypto market.  There are
 	- **Movements** - ATR For all coins.
 		- Movement is calculated by getting the last 14 candles (4 hour candles) take the high - low of each candle, add them all up then divide by 14.
 		- Movement Small is calculated by getting the last 14 candles (4 hour candles) take the absolute value of open - close of each candle, add them all up then divide by 14.
-	- Create a collection for every algorithm that can run, total of 20 collections.
+	- Create a collection for every algorithm that can run, total of 34 collections.
 3. Every 3 seconds the AllPrices collection is updated.
 4. Every 4 hours the Movements collection is updated.
 5. All algorithms use AllPrices collection to get prices (used to limit API calls to Binance).
@@ -40,8 +42,12 @@ The algorithms are based on longing or shorting after 1 or 2 ATR movements happe
 
 **Individual specific results:**
 
-1. cd to one of the 5 main algorithm folders:
+1. cd to one of the 9 main algorithm folders:
+	- ATRFindersSpecial
 	- ATRFinders
+	- ATRFindersChanging
+	- ATRFindersChanging2Loss
+	- ATRFindersReverse
 	- BTCFinders
 	- BTCFindersChanging
 	- BTCFindersChanging2Loss
