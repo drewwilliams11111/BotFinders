@@ -37,7 +37,7 @@ module.exports = class HelperCheckerBTC {
         }
         return {
             table: finalTable,
-            result: `$${Number(totalWallet.toFixed(2))} / $${allCoins.length * 100} / ${Number((Math.abs(totalWallet - (allCoins.length * 100)) / totalWallet).toFixed(2))}%`
+            result: `$${Number(totalWallet.toFixed(2))} / $${allCoins.length * 100} / ${Number(((Math.abs(totalWallet - (allCoins.length * 100)) / totalWallet) * 100).toFixed(2))}%`
         }
     }
 }
