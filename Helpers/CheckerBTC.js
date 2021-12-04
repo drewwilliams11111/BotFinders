@@ -31,13 +31,13 @@ module.exports = class HelperCheckerBTC {
                 buyType: allCoins[i].boughtType,
                 wonTimes: allCoins[i].wonTimes,
                 lossTimes: allCoins[i].lossTimes,
-                percent: Number((Math.abs(allCoins[i].wallet - 100) / allCoins[i].wallet).toFixed(2))
+                percent: Number(((Math.abs(100 - totalPrice) / 100) * 100).toFixed(2))
             })
             totalWallet += totalPrice
         }
         return {
             table: finalTable,
-            result: `$${Number(totalWallet.toFixed(2))} / $${allCoins.length * 100} / ${Number(((Math.abs(totalWallet - (allCoins.length * 100)) / totalWallet) * 100).toFixed(2))}%`
+            result: `$${Number(totalWallet.toFixed(2))} / $${allCoins.length * 100} / ${Number(((Math.abs((allCoins.length * 100) - totalWallet) / (allCoins.length * 100)) * 100).toFixed(2))}%`
         }
     }
 }
